@@ -16,7 +16,7 @@ Explanation of columns
      Description: A short description
 
 Information about ExpiredObject.txt
-The file is a list of outgoing items that need to be fixed.
+The file is a list of objects that need to be fixed.
 This file is located at "*\ExpiredObject\ExpiredObject.txt"
 
 To get this script to work you need to change some variabels at the beginning
