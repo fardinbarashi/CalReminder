@@ -41,8 +41,7 @@ If ( ( Test-Path $PathToExpiredObjectsFile -PathType Leaf ) )
   # SMTP
   $MailSubject = " Cal-Reminder notification - Error ExpiredObject.txt "  #  MailSubject
   $MailBody = "An error has occurred in the script, the file ExpiredObject.txt has existed since a previous run. The file is now deleted, check if the file remains an rerun the script" #  MailBody 
-  # Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8)
-  Write-Host $MailSubject, $MailBody 
+  Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8)
  } # End If
 
 Else 
@@ -78,16 +77,14 @@ Else
       $MailSubject = " Cal-Reminder notification "  #  MailSubject
       $MailBody = "Objects is approaching $DaysTrigger days before it becomes invalid, See ExpiredObject.txt for more information, Do not forget to modify the file $CsvFilePath"  #  MailBody
       $MailAttachments = (Get-ChildItem "$PathToExpiredObjectsFile").FullName
-      #Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -Attachments $MailAttachments -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8)
-      Write-Host $MailSubject, $MailBody 
+      Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -Attachments $MailAttachments -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8)
     } # End Else
    } # End Try
  Catch
    { # Start Catch
      $MailSubject = " Cal-Reminder notification - Import-Csv Calenderdates.csv "  #  MailSubject
      $MailBody = "An error has occurred in the script, the file $CsvFilePath could not get imported" #  MailBody 
-    #Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8) 
-     Write-Host $MailSubject, $MailBody 
+     Send-MailMessage -To $MailTo -From $MailFrom -Subject $MailSubject -Body $MailBody -SmtpServer $SmtpServer -Encoding ([System.Text.Encoding]::UTF8) 
    } # End Catch
 
  } # End Else
